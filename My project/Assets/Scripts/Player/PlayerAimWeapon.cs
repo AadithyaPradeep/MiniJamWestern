@@ -73,7 +73,7 @@ public class PlayerAimWeapon : MonoBehaviour {
                 newgunSmoke.GetComponent<ParticleSystem>().Play();
                 StartCoroutine("timer");
             }
-            source.GenerateImpulse(lookAtPosition * 0.05f);
+            source.GenerateImpulse(lookAtPosition * 0.2f);
             
             OnShoot?.Invoke(this, new OnShootEventArgs { 
                 gunEndPointPosition = aimGunEndPointTransform.position,
