@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAimWeapon : MonoBehaviour {
 
+    public float bulletSpeed;
     public Bullet bulletScript;
     public GameObject gunSmoke;
     public GameObject bullet;
@@ -72,6 +73,7 @@ public class PlayerAimWeapon : MonoBehaviour {
             {
                 GameObject newbullet = Instantiate(bullet,bulletSpawn.position,Quaternion.identity);
                 newbullet.GetComponent<Bullet>().target = mousePosition;
+                newbullet.GetComponent<Bullet>().force = bulletSpeed;
                 GameObject newgunSmoke = Instantiate(gunSmoke,bulletSpawn.position,Quaternion.identity);
                 newgunSmoke.GetComponent<ParticleSystem>().Play();
                 
