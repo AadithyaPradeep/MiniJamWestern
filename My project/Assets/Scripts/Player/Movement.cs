@@ -20,8 +20,13 @@ public class Movement : MonoBehaviour
     private bool canroll = true;
     public float rollDelay;
     public float rollTime = 1f;
+    public Transform feetRef;
+    public float spawnGap;
+    private float spawnGapVal;
+    public GameObject walkParticle;
     private void Update()
     {
+        spawnGap -= Time.deltaTime;
         if (Keyboard.current.spaceKey.wasPressedThisFrame && canroll)
         {
             Roll();
@@ -54,6 +59,7 @@ public class Movement : MonoBehaviour
     }
     void OnEnable()
     {
+        spawnGapVal = spawnGap;
         rolling = false;
         movement.action.Enable();
         movement.action.performed += OnMovementKeyDown;
@@ -74,7 +80,13 @@ public class Movement : MonoBehaviour
         if (movementKeyDown && !rolling)
         {
             transform.position += speed * Time.deltaTime * new Vector3(movementVector.x, movementVector.y, 0);
-
+            if(spawnGap < 0)
+            {
+                spawnGap = spawnGapVal;
+                Instantiate(walkParticle, feetRef.position, Quaternion.identity);
+            }
+            
+          
         }
     }
 
@@ -137,4 +149,5 @@ public class Movement : MonoBehaviour
         canroll = true;
 
     }
+    
 }

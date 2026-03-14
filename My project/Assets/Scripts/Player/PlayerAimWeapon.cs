@@ -17,6 +17,8 @@ public class PlayerAimWeapon : MonoBehaviour {
     public event EventHandler<OnShootEventArgs> OnShoot;
     private Vector3 lookAtPosition;
     public bool canShoot;
+    public float screenShake;
+    
     public class OnShootEventArgs : EventArgs {
         public Vector3 gunEndPointPosition;
         public Vector3 shootPosition;
@@ -68,12 +70,14 @@ public class PlayerAimWeapon : MonoBehaviour {
             aimAnimator.SetTrigger("Shoot");
             if (bullet!= null)
             {
-                Instantiate(bullet,bulletSpawn.position,Quaternion.identity);
+                GameObject newbullet = Instantiate(bullet,bulletSpawn.position,Quaternion.identity);
+                newbullet.GetComponent<Bullet>().target = mousePosition;
                 GameObject newgunSmoke = Instantiate(gunSmoke,bulletSpawn.position,Quaternion.identity);
                 newgunSmoke.GetComponent<ParticleSystem>().Play();
+                
                 StartCoroutine("timer");
             }
-            source.GenerateImpulse(lookAtPosition * 0.2f);
+            source.GenerateImpulse(lookAtPosition.normalized * screenShake);
             
             OnShoot?.Invoke(this, new OnShootEventArgs { 
                 gunEndPointPosition = aimGunEndPointTransform.position,
@@ -98,6 +102,7 @@ public class PlayerAimWeapon : MonoBehaviour {
     }
     public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
     {
+        screenPosition.z = Mathf.Abs(worldCamera.transform.position.z);
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
         return worldPosition;
     }

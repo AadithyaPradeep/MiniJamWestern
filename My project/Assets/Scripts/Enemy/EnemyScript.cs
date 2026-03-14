@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,8 +13,17 @@ public class EnemyScript : MonoBehaviour
     private SpriteRenderer sp;
     private bool inRange;
     private float plDist;
-    private float Range;
+    public float Range;
     public float speed;
+    public Animator aimAnimator;
+    public GameObject bullet;
+    public GameObject gunSmoke;
+    public Transform bulletSpawn;
+    private bool canShoot = true;
+    public float fireDelay;
+    public float aimDelay;
+    private Vector3 aimPos;
+    
     private void Start()
     {
         Player = GameObject.Find("Player");
@@ -23,14 +33,15 @@ public class EnemyScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        aim();
+        
         plDist = Vector3.Distance(transform.position, Player.transform.position);
-        if (plDist < Range)
+        if (plDist < Range )
         {
             inRange = true;
         }
         if(!inRange)
         {
+            aim();
             transform.position += (Player.transform.position - aimTransform.position).normalized*speed*Time.deltaTime;
             if((Player.transform.position.x - transform.position.x) < 0)
             {
@@ -44,9 +55,11 @@ public class EnemyScript : MonoBehaviour
                 animator.SetBool("Running", true);
             }
         }
-        if(inRange)
+        if(inRange && canShoot)
         {
-
+            canShoot = false;
+            animator.SetBool("Running", false);
+            StartCoroutine("Shoot");
         }
 
     }
@@ -67,4 +80,33 @@ public class EnemyScript : MonoBehaviour
         }
         aimTransform.localScale = aimLocalScale;
     }
+    private IEnumerator Shoot()
+    {
+        aim();
+        aimPos = Player.transform.position;
+        yield return new WaitForSeconds(aimDelay);
+        
+            aimAnimator.SetTrigger("Shoot");
+            if (bullet != null)
+            {
+                GameObject newbullet = Instantiate(bullet, bulletSpawn.position, Quaternion.identity);
+                newbullet.GetComponent<Bullet>().target = aimPos;
+                newbullet.GetComponent<Bullet>().enemyBullet = true;
+                GameObject newgunSmoke = Instantiate(gunSmoke, bulletSpawn.position, Quaternion.identity);
+                newgunSmoke.GetComponent<ParticleSystem>().Play();
+                
+                
+            }
+            StartCoroutine("timer");
+            inRange = false;
+        
+    }
+    private IEnumerator timer()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(fireDelay);
+        canShoot = true;
+    }
+    
+
 }
