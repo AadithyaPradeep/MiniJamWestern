@@ -38,7 +38,7 @@ public class Lives : MonoBehaviour
         this.GetComponent<EnemyScript>().enabled = false;
         yield return new WaitForSeconds(deathTime);
         this.gameObject.SetActive(false);
-        Instantiate(deathParticle, transform.position, Quaternion.identity);    
-        
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
+      
     }
 }

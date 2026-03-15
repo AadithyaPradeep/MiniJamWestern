@@ -33,6 +33,9 @@ public class PlayerAimWeapon : MonoBehaviour {
     private Transform aimShellPositionTransform;
     private Animator aimAnimator;
 
+
+    [SerializeField] private GameplayAudio gameplayAudio;
+
     private void Awake() {
 
         aimTransform = transform.Find("Aim");
@@ -67,6 +70,9 @@ public class PlayerAimWeapon : MonoBehaviour {
     private void HandleShooting() {
         if (Mouse.current.leftButton.wasPressedThisFrame && canShoot) {
             Vector3 mousePosition = GetMouseWorldPosition();
+
+            gameplayAudio.PlayShootWeapon01();
+            
 
             aimAnimator.SetTrigger("Shoot");
             if (bullet!= null)

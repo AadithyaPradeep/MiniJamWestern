@@ -24,6 +24,11 @@ public class Movement : MonoBehaviour
     public float spawnGap;
     private float spawnGapVal;
     public GameObject walkParticle;
+
+
+    [SerializeField] private GameplayAudio gameplayAudio;
+
+
     private void Update()
     {
         spawnGap -= Time.deltaTime;
@@ -84,6 +89,8 @@ public class Movement : MonoBehaviour
             {
                 spawnGap = spawnGapVal;
                 Instantiate(walkParticle, feetRef.position, Quaternion.identity);
+
+                gameplayAudio.PlayFootstepsRobot();
             }
             
           
