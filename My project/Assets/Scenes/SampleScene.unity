@@ -849,6 +849,7 @@ MonoBehaviour:
   canShoot: 0
   screenShake: 0
   source: {fileID: 767423912}
+  gameplayAudio: {fileID: 0}
 --- !u!95 &125822345
 Animator:
   serializedVersion: 7
@@ -981,6 +982,7 @@ MonoBehaviour:
   feetRef: {fileID: 1587401291}
   spawnGap: 0.5
   walkParticle: {fileID: 0}
+  gameplayAudio: {fileID: 0}
 --- !u!1 &139334463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1628,50 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
+--- !u!1 &240743432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 240743433}
+  - component: {fileID: 240743434}
+  m_Layer: 0
+  m_Name: MX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &240743433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240743432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 403120380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &240743434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240743432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d354ff9d9be3c4353a4d787f609cff73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MXManager
 --- !u!1 &251543137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2284,54 @@ Transform:
   - {fileID: 508006905}
   - {fileID: 2129416376}
   m_Father: {fileID: 1076215852}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &403120378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403120380}
+  - component: {fileID: 403120379}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &403120379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403120378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e772bc36dc9346be9537bcad9c463f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  sFXMixer: {fileID: 24300002, guid: 12ae29ac833394357b2d8d1a468a6711, type: 2}
+  mXMixer: {fileID: 24300002, guid: a19d9399993444c7c96dcbcaab3cd6f0, type: 2}
+--- !u!4 &403120380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403120378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 591936035}
+  - {fileID: 240743433}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405687363
 GameObject:
@@ -3738,6 +3832,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -26}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &591936034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591936035}
+  - component: {fileID: 591936036}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591936035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591936034}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 403120380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591936036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591936034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e254c0bfcd1f4b4a9dea6b73e125430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXManager
+  poolSize: 20
 --- !u!1 &595907597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5406,6 +5545,7 @@ MonoBehaviour:
   feetRef: {fileID: 1587401291}
   spawnGap: 0.5
   walkParticle: {fileID: 1963841511119621040, guid: 501f893c684f2fa41be69a192051d63d, type: 3}
+  gameplayAudio: {fileID: 1205982247}
 --- !u!212 &767423906
 SpriteRenderer:
   serializedVersion: 2
@@ -5553,6 +5693,7 @@ MonoBehaviour:
   canShoot: 1
   screenShake: 0.2
   source: {fileID: 767423912}
+  gameplayAudio: {fileID: 1205982247}
 --- !u!114 &767423912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7658,6 +7799,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 1342504853}
   fireDelay: 0.5
   aimDelay: 0.5
+  gameplayAudio: {fileID: 1205982247}
+  spawnGap: 0.3
 --- !u!212 &1076215851
 SpriteRenderer:
   serializedVersion: 2
@@ -8774,6 +8917,88 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
+--- !u!1 &1205982246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205982248}
+  - component: {fileID: 1205982247}
+  m_Layer: 0
+  m_Name: GameplayAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1205982247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205982246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9f174a5be40458aaa0ac4ddc818860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameplayAudio
+  shootWeapon01:
+  - {fileID: 8300000, guid: 434222a37a5fd4726a248a976df4ba92, type: 3}
+  - {fileID: 8300000, guid: fb52c9f199a6c4484822d3fda3658572, type: 3}
+  - {fileID: 8300000, guid: c0c1bbee0d631402cb4318d3dec8abd0, type: 3}
+  - {fileID: 8300000, guid: 28c13195ec57942719455f2db2572b2c, type: 3}
+  - {fileID: 8300000, guid: 5e1a3b5b3d4964cf7a396b7c4a1847e0, type: 3}
+  shootWeaponAK:
+  - {fileID: 8300000, guid: 61fa1bc7272c543258ebf528594b2007, type: 3}
+  - {fileID: 8300000, guid: 65c2426eeba8746688d044b2861dfa53, type: 3}
+  - {fileID: 8300000, guid: 0b415670cae264917ac20d5c186995ec, type: 3}
+  - {fileID: 8300000, guid: 7a3f8709f456c451d9754e850c7367ee, type: 3}
+  axeSwing:
+  - {fileID: 8300000, guid: ae483e764b7f24bdcb3776e8ff824caa, type: 3}
+  - {fileID: 8300000, guid: 4741894e418554282a8becf609f99c68, type: 3}
+  - {fileID: 8300000, guid: b7f774d523ffc462e88b7df3aba2a91e, type: 3}
+  - {fileID: 8300000, guid: 09c01f36b85004faaaf88da60448a3a0, type: 3}
+  footstepsRobot:
+  - {fileID: 8300000, guid: 308f2d80733af4dd5bb7dce9a46d190d, type: 3}
+  - {fileID: 8300000, guid: 9c7805c51ed444b6aa6cbbbd95b38589, type: 3}
+  - {fileID: 8300000, guid: 5ad9101e9f603447c9628429d1dc188d, type: 3}
+  - {fileID: 8300000, guid: de417bc88883140a69b433f142fc1676, type: 3}
+  - {fileID: 8300000, guid: 0d871f21a756f4d07acb065084832030, type: 3}
+  - {fileID: 8300000, guid: 4f28130f983894db5885799869e9ffa3, type: 3}
+  - {fileID: 8300000, guid: 12f9a2928425543a48790af15abf3afc, type: 3}
+  - {fileID: 8300000, guid: 0ba872bfca36c478db8f49d1d4533787, type: 3}
+  - {fileID: 8300000, guid: 2475bf0d26a6e4bb5aff984145774c72, type: 3}
+  - {fileID: 8300000, guid: 964c130c986a547709a3f388bf8118b2, type: 3}
+  footstepsHumans:
+  - {fileID: 8300000, guid: ef58a9cfe45df471487913a427ef0056, type: 3}
+  - {fileID: 8300000, guid: c05046ac05c4d4490959dd326e01c796, type: 3}
+  - {fileID: 8300000, guid: 4158e986117a84ab3b95e2d23943f2be, type: 3}
+  - {fileID: 8300000, guid: d69d4a1a80b8c4150a04fa5887023d12, type: 3}
+  - {fileID: 8300000, guid: aff3dee90833d46768c66d9a1e597fa9, type: 3}
+  - {fileID: 8300000, guid: 26493cce619f143fb91c1df4b3c8cebd, type: 3}
+  - {fileID: 8300000, guid: 53ffec5a55da84057a07cafcaec7ae69, type: 3}
+  - {fileID: 8300000, guid: 9f1e3a271742a48b1bb48569ddb0040a, type: 3}
+  - {fileID: 8300000, guid: 5725e2938c0c94e0d9c30f674f003b16, type: 3}
+  - {fileID: 8300000, guid: 527d8cc08853a4831b0b8775c71d1d84, type: 3}
+--- !u!4 &1205982248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205982246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210961134
 GameObject:
   m_ObjectHideFlags: 0
@@ -26131,6 +26356,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 1101420368}
   fireDelay: 2
   aimDelay: 1
+  gameplayAudio: {fileID: 1205982247}
+  spawnGap: 0.3
 --- !u!212 &1382939863
 SpriteRenderer:
   serializedVersion: 2
@@ -26902,6 +27129,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 0}
   fireDelay: 0
   aimDelay: 0
+  gameplayAudio: {fileID: 0}
+  spawnGap: 0
 --- !u!50 &1440526268
 Rigidbody2D:
   serializedVersion: 5
@@ -27203,6 +27432,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 0}
   fireDelay: 0
   aimDelay: 0
+  gameplayAudio: {fileID: 0}
+  spawnGap: 0
 --- !u!212 &1464467750
 SpriteRenderer:
   serializedVersion: 2
@@ -29306,6 +29537,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 0}
   fireDelay: 0.5
   aimDelay: 0
+  gameplayAudio: {fileID: 0}
+  spawnGap: 0
 --- !u!212 &1676285476
 SpriteRenderer:
   serializedVersion: 2
@@ -29950,6 +30183,7 @@ GameObject:
   - component: {fileID: 1733247952}
   - component: {fileID: 1733247954}
   - component: {fileID: 1733247953}
+  - component: {fileID: 1733247955}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -62984,6 +63218,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1733247955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733247951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e254c0bfcd1f4b4a9dea6b73e125430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXManager
+  poolSize: 10
 --- !u!1 &1737787373
 GameObject:
   m_ObjectHideFlags: 0
@@ -64859,6 +65106,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 989427638}
   fireDelay: 0.5
   aimDelay: 0.5
+  gameplayAudio: {fileID: 1205982247}
+  spawnGap: 0.3
 --- !u!212 &1987434881
 SpriteRenderer:
   serializedVersion: 2
@@ -66210,3 +66459,5 @@ SceneRoots:
   - {fileID: 1816590295}
   - {fileID: 1048131946}
   - {fileID: 147410837}
+  - {fileID: 403120380}
+  - {fileID: 1205982248}

@@ -23,6 +23,11 @@ public class EnemyScript : MonoBehaviour
     public float fireDelay;
     public float aimDelay;
     private Vector3 aimPos;
+
+    [SerializeField] private GameplayAudio gameplayAudio;
+    public float spawnGap;
+    private float spawnGapVal;
+
     
     private void Start()
     {
@@ -30,10 +35,15 @@ public class EnemyScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         inRange = false;
+
+
+        spawnGapVal = spawnGap;
+
     }
     private void FixedUpdate()
     {
-        
+        spawnGap -= Time.deltaTime;
+
         plDist = Vector3.Distance(transform.position, Player.transform.position);
         if (plDist < Range )
         {
@@ -43,6 +53,13 @@ public class EnemyScript : MonoBehaviour
         {
             aim();
             transform.position += (Player.transform.position - aimTransform.position).normalized*speed*Time.deltaTime;
+
+            if(spawnGap < 0)
+            {
+                spawnGap = spawnGapVal;
+                gameplayAudio.PlayFootstepsHumans(transform.position);
+            }
+            
             if((Player.transform.position.x - transform.position.x) < 0)
             {
                 sp.flipX = true;
@@ -85,6 +102,8 @@ public class EnemyScript : MonoBehaviour
         aim();
         aimPos = Player.transform.position;
         yield return new WaitForSeconds(aimDelay);
+        if (!enabled) yield break;
+
         
             aimAnimator.SetTrigger("Shoot");
             if (bullet != null)
@@ -94,9 +113,15 @@ public class EnemyScript : MonoBehaviour
                 newbullet.GetComponent<Bullet>().enemyBullet = true;
                 GameObject newgunSmoke = Instantiate(gunSmoke, bulletSpawn.position, Quaternion.identity);
                 newgunSmoke.GetComponent<ParticleSystem>().Play();
-                
+
+                gameplayAudio.PlayShootWeaponAK(transform.position);
                 
             }
+            else
+            {
+                gameplayAudio.PlayWeaponAxe(transform.position);
+            }
+            
             StartCoroutine("timer");
             inRange = false;
         
